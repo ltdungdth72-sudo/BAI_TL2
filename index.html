@@ -3,6 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Compatibility shim for browser extensions attempting to intercept window.fetch
+      try {
+        const originalFetch = window.fetch ? window.fetch.bind(window) : null;
+        let activeFetch = originalFetch;
+        Object.defineProperty(window, 'fetch', {
+          get() {
+            return activeFetch;
+          },
+          set(val) {
+            activeFetch = val;
+          },
+          configurable: true,
+          enumerable: true,
+        });
+      } catch (e) {
+        // Fallback gracefully if property cannot be redefined
+      }
+    </script>
     <title>PHÒNG THẢO LUẬN SỐ – TIN HỌC 10</title>
     <meta name="description" content="Hệ thống thảo luận nhóm trực tuyến môn Tin học 10 THPT Đinh Tiên Hoàng - GV Lê Thị Dung" />
     <meta property="og:title" content="PHÒNG THẢO LUẬN SỐ – TIN HỌC 10" />
