@@ -153,14 +153,20 @@ export const StudentView: React.FC<StudentViewProps> = ({
     setShowConfirmModal(true);
   };
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   // 4. Confirm and Submit
   const handleConfirmSubmit = async () => {
     if (!currentGroup) return;
     setIsSubmitting(true);
     setShowConfirmModal(false);
+    setSubmitError(null);
+
+    // Save local draft first so nothing is ever lost
+    saveLocalDraft(currentGroup.id, answers, members);
+
     try {
       await saveGroupAnswers(currentGroup.id, answers, members, false);
-      saveLocalDraft(currentGroup.id, answers, members);
       setIsSubmitting(false);
       setShowSuccessModal(true);
 
@@ -178,7 +184,9 @@ export const StudentView: React.FC<StudentViewProps> = ({
       onRefresh();
     } catch (err: any) {
       setIsSubmitting(false);
-      alert('Không thể gửi bài lên máy chủ. Vui lòng kiểm tra lại kết nối!');
+      setSubmitError(
+        err.message || 'Mạng bị gián đoạn. Bài làm đã được lưu an toàn trên máy bạn.'
+      );
     }
   };
 
@@ -690,6 +698,50 @@ export const StudentView: React.FC<StudentViewProps> = ({
             >
               Xem lại bài làm / Tiếp tục
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Submit Error & Instant Retry Modal */}
+      {submitError && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl text-center animate-scale-up">
+            <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mx-auto mb-3">
+              <AlertCircle className="w-8 h-8" />
+            </div>
+
+            <h3 className="text-lg sm:text-xl font-black text-slate-900 mb-2">
+              Chưa thể gửi bài lên máy chủ
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+              Kết nối mạng trên điện thoại bị chập chờn. 
+              <br />
+              <strong className="text-emerald-700">Yên tâm: Bài làm đã được tự động lưu an toàn trong máy bạn, không bị mất chữ nào!</strong>
+            </p>
+
+            <div className="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900 mb-5 text-left font-medium">
+              💡 Hãy kiểm tra lại kết nối Wifi/4G rồi bấm nút <strong>"Thử gửi lại ngay"</strong> bên dưới.
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={handleConfirmSubmit}
+                disabled={isSubmitting}
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm shadow-md transition-all active:scale-95 disabled:opacity-50"
+              >
+                {isSubmitting ? 'Đang gửi lại...' : '🔄 BẤM ĐỂ THỬ GỬI LẠI NGAY'}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSubmitError(null)}
+                className="w-full py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold text-xs sm:text-sm transition-all"
+              >
+                Đóng để tiếp tục chỉnh sửa
+              </button>
+            </div>
           </div>
         </div>
       )}

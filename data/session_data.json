@@ -6,7 +6,7 @@
   "subjectName": "Tin học 10",
   "targetGrade": "Lớp 10",
   "createdAt": "2026-10-27T13:21:14.533Z",
-  "updatedAt": "2026-10-27T13:21:28.510Z",
+  "updatedAt": "2026-10-27T13:44:07.309Z",
   "groups": [
     {
       "id": 1,
@@ -97,7 +97,7 @@
       },
       "status": "chua_lam",
       "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:43:59.544Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
