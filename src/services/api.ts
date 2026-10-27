@@ -122,63 +122,49 @@ export function subscribeToSessionUpdates(
   let pollingInterval: any = null;
   let isClosed = false;
 
-  const connectSSE = () => {
+  // 1. Guaranteed active polling every 2.5 seconds (ensures updates arrive even if SSE is buffered)
+  pollingInterval = setInterval(async () => {
     if (isClosed) return;
     try {
-      eventSource = new EventSource(`${API_BASE}/stream`);
-
-      eventSource.onmessage = (event) => {
-        try {
-          const payload = JSON.parse(event.data);
-          if (payload.data) {
-            onUpdate(payload.data);
-          }
-        } catch (e) {
-          console.error('SSE parse error:', e);
-        }
-      };
-
-      eventSource.onerror = (err) => {
-        console.warn('SSE connection error, falling back to polling:', err);
-        if (eventSource) {
-          eventSource.close();
-          eventSource = null;
-        }
-        if (!pollingInterval && !isClosed) {
-          pollingInterval = setInterval(async () => {
-            try {
-              const data = await fetchSession();
-              onUpdate(data);
-            } catch (pollErr) {
-              if (onError) onError(pollErr);
-            }
-          }, 3500);
-        }
-      };
-    } catch (e) {
-      console.warn('SSE initiation failed, using polling fallback');
-      if (!pollingInterval && !isClosed) {
-        pollingInterval = setInterval(async () => {
-          try {
-            const data = await fetchSession();
-            onUpdate(data);
-          } catch (pollErr) {
-            if (onError) onError(pollErr);
-          }
-        }, 3500);
-      }
+      const data = await fetchSession();
+      onUpdate(data);
+    } catch (pollErr) {
+      if (onError) onError(pollErr);
     }
-  };
+  }, 2500);
 
-  connectSSE();
+  // 2. Immediate push via SSE for instant updates
+  try {
+    eventSource = new EventSource(`${API_BASE}/stream`);
+
+    eventSource.onmessage = (event) => {
+      try {
+        const payload = JSON.parse(event.data);
+        if (payload?.data) {
+          onUpdate(payload.data);
+        }
+      } catch (e) {
+        console.error('SSE parse error:', e);
+      }
+    };
+
+    eventSource.onerror = (err) => {
+      // Polling continues in background seamlessly
+      console.warn('SSE stream disconnected, polling actively every 2.5s:', err);
+    };
+  } catch (e) {
+    console.warn('SSE unsupported, relying on active polling:', e);
+  }
 
   return () => {
     isClosed = true;
     if (eventSource) {
       eventSource.close();
+      eventSource = null;
     }
     if (pollingInterval) {
       clearInterval(pollingInterval);
+      pollingInterval = null;
     }
   };
 }

@@ -54,13 +54,26 @@ const INITIAL_FALLBACK_SESSION: DiscussionSession = {
 
 export default function App() {
   const [session, setSession] = useState<DiscussionSession>(INITIAL_FALLBACK_SESSION);
-  const [currentView, setCurrentView] = useState<'student' | 'teacher' | 'projector'>('student');
+  const [currentView, setCurrentView] = useState<'student' | 'teacher' | 'projector'>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get('view');
+      if (v === 'student' || v === 'teacher' || v === 'projector') return v;
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+      return isMobile ? 'student' : 'teacher';
+    }
+    return 'teacher';
+  });
   const [selectedGroupId, setSelectedGroupId] = useState<number | null>(null);
   const [projectorGroupId, setProjectorGroupId] = useState<number>(1);
   const [isConnected, setIsConnected] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showQRModal, setShowQRModal] = useState<boolean>(false);
   const [qrTargetGroupId, setQrTargetGroupId] = useState<number | null>(null);
+
+  const submittedCount = session.groups.filter((g) => g.status === 'da_gui').length;
 
   // Load session from server
   const loadData = useCallback(async () => {
@@ -158,6 +171,7 @@ export default function App() {
         isConnected={isConnected}
         selectedGroupId={selectedGroupId}
         onOpenQR={handleOpenQR}
+        submittedCount={submittedCount}
       />
 
       {/* Main Content Area */}

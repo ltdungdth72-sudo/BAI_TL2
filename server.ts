@@ -158,6 +158,12 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Log incoming requests for live debugging
+  app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString().slice(11, 19)}] ${req.method} ${req.url}`);
+    next();
+  });
+
   // CORS support for mobile devices and webviews
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -213,15 +219,25 @@ async function startServer() {
   // SSE Stream for real-time updates
   app.get('/api/stream', (req: Request, res: Response) => {
     res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Cache-Control', 'no-cache, no-transform');
     res.setHeader('Connection', 'keep-alive');
+    res.setHeader('X-Accel-Buffering', 'no');
     res.flushHeaders();
 
     // Send initial data
     res.write(`data: ${JSON.stringify({ type: 'INIT', data: sessionData })}\n\n`);
     sseClients.add(res);
 
+    const pingTimer = setInterval(() => {
+      try {
+        res.write(': ping\n\n');
+      } catch {
+        clearInterval(pingTimer);
+      }
+    }, 15000);
+
     req.on('close', () => {
+      clearInterval(pingTimer);
       sseClients.delete(res);
     });
   });
@@ -277,6 +293,7 @@ async function startServer() {
     saveData(sessionData);
     syncGroupAsync(updatedGroup);
 
+    console.log(`[SUBMIT] Nhóm ${id} đã ${isDraft ? 'lưu nháp' : 'GỬI BÀI THÀNH CÔNG'} lúc ${now}. Thành viên: "${updatedGroup.members}"`);
     res.json({ success: true, group: updatedGroup });
   });
 

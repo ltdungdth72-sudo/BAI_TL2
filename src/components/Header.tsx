@@ -19,6 +19,7 @@ interface HeaderProps {
   isConnected: boolean;
   selectedGroupId: number | null;
   onOpenQR: () => void;
+  submittedCount?: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -27,6 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
   isConnected,
   selectedGroupId,
   onOpenQR,
+  submittedCount = 0,
 }) => {
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
@@ -106,6 +108,11 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <LayoutDashboard className="w-4 h-4" />
             <span>Giáo viên</span>
+            {submittedCount > 0 && (
+              <span className="bg-emerald-500 text-white font-bold text-[10px] px-1.5 py-0.2 rounded-full animate-pulse">
+                {submittedCount}/12
+              </span>
+            )}
           </button>
 
           <button
