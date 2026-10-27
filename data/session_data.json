@@ -1,0 +1,312 @@
+{
+  "sessionId": "TIN10-DTH-2026",
+  "sessionTitle": "PHÒNG THẢO LUẬN SỐ – TIN HỌC 10",
+  "teacherName": "Lê Thị Dung",
+  "schoolName": "THPT Đinh Tiên Hoàng",
+  "subjectName": "Tin học 10",
+  "targetGrade": "Lớp 10",
+  "createdAt": "2026-10-27T13:21:14.533Z",
+  "updatedAt": "2026-10-27T13:21:28.510Z",
+  "groups": [
+    {
+      "id": 1,
+      "name": "Nhóm 1",
+      "topicId": "topic_1",
+      "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:24.605Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 2,
+      "name": "Nhóm 2",
+      "topicId": "topic_1",
+      "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 3,
+      "name": "Nhóm 3",
+      "topicId": "topic_1",
+      "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 4,
+      "name": "Nhóm 4",
+      "topicId": "topic_1",
+      "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 5,
+      "name": "Nhóm 5",
+      "topicId": "topic_1",
+      "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 6,
+      "name": "Nhóm 6",
+      "topicId": "topic_2",
+      "scenario": "Một học sinh muốn sử dụng phần mềm thiết kế đồ họa có bản quyền nhưng không muốn trả phí. Bạn đã tải phần mềm từ một trang web không chính thức, sử dụng công cụ bẻ khóa để vô hiệu hóa cơ chế kiểm tra bản quyền và cài đặt phần mềm trên máy tính cá nhân.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 7,
+      "name": "Nhóm 7",
+      "topicId": "topic_2",
+      "scenario": "Một học sinh muốn sử dụng phần mềm thiết kế đồ họa có bản quyền nhưng không muốn trả phí. Bạn đã tải phần mềm từ một trang web không chính thức, sử dụng công cụ bẻ khóa để vô hiệu hóa cơ chế kiểm tra bản quyền và cài đặt phần mềm trên máy tính cá nhân.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 8,
+      "name": "Nhóm 8",
+      "topicId": "topic_2",
+      "scenario": "Một học sinh muốn sử dụng phần mềm thiết kế đồ họa có bản quyền nhưng không muốn trả phí. Bạn đã tải phần mềm từ một trang web không chính thức, sử dụng công cụ bẻ khóa để vô hiệu hóa cơ chế kiểm tra bản quyền và cài đặt phần mềm trên máy tính cá nhân.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 9,
+      "name": "Nhóm 9",
+      "topicId": "topic_2",
+      "scenario": "Một học sinh muốn sử dụng phần mềm thiết kế đồ họa có bản quyền nhưng không muốn trả phí. Bạn đã tải phần mềm từ một trang web không chính thức, sử dụng công cụ bẻ khóa để vô hiệu hóa cơ chế kiểm tra bản quyền và cài đặt phần mềm trên máy tính cá nhân.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 10,
+      "name": "Nhóm 10",
+      "topicId": "topic_2",
+      "scenario": "Một học sinh muốn sử dụng phần mềm thiết kế đồ họa có bản quyền nhưng không muốn trả phí. Bạn đã tải phần mềm từ một trang web không chính thức, sử dụng công cụ bẻ khóa để vô hiệu hóa cơ chế kiểm tra bản quyền và cài đặt phần mềm trên máy tính cá nhân.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 11,
+      "name": "Nhóm 11",
+      "topicId": "topic_1",
+      "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    },
+    {
+      "id": 12,
+      "name": "Nhóm 12",
+      "topicId": "topic_2",
+      "scenario": "Một học sinh muốn sử dụng phần mềm thiết kế đồ họa có bản quyền nhưng không muốn trả phí. Bạn đã tải phần mềm từ một trang web không chính thức, sử dụng công cụ bẻ khóa để vô hiệu hóa cơ chế kiểm tra bản quyền và cài đặt phần mềm trên máy tính cá nhân.",
+      "members": "",
+      "answers": {
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
+      },
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T13:21:14.534Z",
+      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "submittedAt": null,
+      "feedback": {
+        "generalComment": "",
+        "strengths": "",
+        "improvements": "",
+        "isEvaluated": false,
+        "isPublished": false,
+        "evaluatedAt": null
+      }
+    }
+  ]
+}
