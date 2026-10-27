@@ -19,6 +19,7 @@ import {
   ZoomOut,
   Users,
   Award,
+  QrCode,
 } from 'lucide-react';
 import {
   DiscussionSession,
@@ -32,12 +33,14 @@ interface ProjectorViewProps {
   session: DiscussionSession;
   initialGroupId?: number;
   onExit: () => void;
+  onOpenQR?: (groupId?: number) => void;
 }
 
 export const ProjectorView: React.FC<ProjectorViewProps> = ({
   session,
   initialGroupId = 1,
   onExit,
+  onOpenQR,
 }) => {
   const [currentGroupId, setCurrentGroupId] = useState<number>(initialGroupId);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
@@ -147,6 +150,18 @@ export const ProjectorView: React.FC<ProjectorViewProps> = ({
             <LayoutGrid className="w-4 h-4" />
             <span className="hidden sm:inline">Tổng hợp 12 nhóm</span>
           </button>
+
+          {/* QR Code projector popup button */}
+          {onOpenQR && (
+            <button
+              onClick={() => onOpenQR(currentGroupId)}
+              className="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white transition-all shadow-xs active:scale-95"
+              title="Hiện mã QR cho học sinh quét vào thảo luận"
+            >
+              <QrCode className="w-4 h-4" />
+              <span className="hidden sm:inline">Mã QR</span>
+            </button>
+          )}
 
           {/* Font Size Adjusters */}
           <div className="flex items-center bg-slate-800 rounded-xl p-0.5 border border-slate-700">

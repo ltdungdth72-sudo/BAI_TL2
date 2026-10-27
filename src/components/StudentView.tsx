@@ -20,6 +20,7 @@ import {
   FileCheck2,
   ShieldCheck,
   Edit3,
+  QrCode,
 } from 'lucide-react';
 import {
   DiscussionSession,
@@ -35,6 +36,7 @@ interface StudentViewProps {
   selectedGroupId: number | null;
   onSelectGroup: (groupId: number | null) => void;
   onRefresh: () => void;
+  onOpenQR?: (groupId?: number) => void;
 }
 
 export const StudentView: React.FC<StudentViewProps> = ({
@@ -42,6 +44,7 @@ export const StudentView: React.FC<StudentViewProps> = ({
   selectedGroupId,
   onSelectGroup,
   onRefresh,
+  onOpenQR,
 }) => {
   const [hasStarted, setHasStarted] = useState<boolean>(false);
   const [currentGroup, setCurrentGroup] = useState<GroupData | null>(null);
@@ -214,16 +217,30 @@ export const StudentView: React.FC<StudentViewProps> = ({
             </div>
           </div>
 
-          <button
-            onClick={() => {
-              const el = document.getElementById('group-list-section');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-8 py-3.5 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-base sm:text-lg"
-          >
-            <Users className="w-5 h-5" />
-            THAM GIA THẢO LUẬN
-          </button>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={() => {
+                const el = document.getElementById('group-list-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold px-7 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-sm sm:text-base"
+            >
+              <Users className="w-5 h-5" />
+              THAM GIA THẢO LUẬN
+            </button>
+
+            {onOpenQR && (
+              <button
+                type="button"
+                onClick={() => onOpenQR()}
+                className="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 text-white font-bold px-5 py-3 rounded-2xl border border-white/30 shadow-md transition-all text-xs sm:text-sm backdrop-blur-xs"
+                title="Hiện mã QR để cả lớp cùng quét"
+              >
+                <QrCode className="w-4 h-4 text-amber-300" />
+                <span>MÃ QR PHÒNG</span>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Group Selector Section */}
@@ -331,6 +348,18 @@ export const StudentView: React.FC<StudentViewProps> = ({
         </button>
 
         <div className="flex items-center gap-2">
+          {onOpenQR && (
+            <button
+              type="button"
+              onClick={() => onOpenQR(currentGroup.id)}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-xl border border-blue-200 transition-all shadow-2xs"
+              title="Mở mã QR cho các bạn trong nhóm quét"
+            >
+              <QrCode className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Mã QR nhóm</span>
+            </button>
+          )}
+
           {currentGroup.status === 'da_gui' ? (
             <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-200">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />

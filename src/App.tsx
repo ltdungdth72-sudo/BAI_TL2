@@ -14,6 +14,7 @@ import { Header } from './components/Header';
 import { StudentView } from './components/StudentView';
 import { TeacherDashboard } from './components/TeacherDashboard';
 import { ProjectorView } from './components/ProjectorView';
+import { QRCodeModal } from './components/QRCodeModal';
 import { Users, BookOpen, ShieldCheck, RefreshCw } from 'lucide-react';
 
 const INITIAL_FALLBACK_SESSION: DiscussionSession = {
@@ -58,6 +59,8 @@ export default function App() {
   const [projectorGroupId, setProjectorGroupId] = useState<number>(1);
   const [isConnected, setIsConnected] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showQRModal, setShowQRModal] = useState<boolean>(false);
+  const [qrTargetGroupId, setQrTargetGroupId] = useState<number | null>(null);
 
   // Load session from server
   const loadData = useCallback(async () => {
@@ -70,6 +73,26 @@ export default function App() {
       setIsConnected(false);
     } finally {
       setIsLoading(false);
+    }
+  }, []);
+
+  // Parse URL search parameters on first load (e.g., student scanned QR for a specific group)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get('view');
+      const g = params.get('group');
+
+      if (v === 'student' || v === 'teacher' || v === 'projector') {
+        setCurrentView(v);
+      }
+      if (g) {
+        const parsedG = parseInt(g, 10);
+        if (!isNaN(parsedG) && parsedG >= 1 && parsedG <= 12) {
+          setSelectedGroupId(parsedG);
+          setCurrentView('student');
+        }
+      }
     }
   }, []);
 
@@ -100,14 +123,29 @@ export default function App() {
     setCurrentView('projector');
   };
 
+  const handleOpenQR = (groupId?: number) => {
+    setQrTargetGroupId(groupId || null);
+    setShowQRModal(true);
+  };
+
   // If in Projector mode, render ProjectorView full screen
   if (currentView === 'projector') {
     return (
-      <ProjectorView
-        session={session}
-        initialGroupId={projectorGroupId}
-        onExit={() => setCurrentView('teacher')}
-      />
+      <>
+        <ProjectorView
+          session={session}
+          initialGroupId={projectorGroupId}
+          onExit={() => setCurrentView('teacher')}
+          onOpenQR={handleOpenQR}
+        />
+        {showQRModal && (
+          <QRCodeModal
+            session={session}
+            initialGroupId={qrTargetGroupId}
+            onClose={() => setShowQRModal(false)}
+          />
+        )}
+      </>
     );
   }
 
@@ -119,6 +157,7 @@ export default function App() {
         onViewChange={(view) => setCurrentView(view)}
         isConnected={isConnected}
         selectedGroupId={selectedGroupId}
+        onOpenQR={handleOpenQR}
       />
 
       {/* Main Content Area */}
@@ -129,12 +168,14 @@ export default function App() {
             selectedGroupId={selectedGroupId}
             onSelectGroup={(id) => setSelectedGroupId(id)}
             onRefresh={loadData}
+            onOpenQR={handleOpenQR}
           />
         ) : (
           <TeacherDashboard
             session={session}
             onRefresh={loadData}
             onOpenProjector={handleOpenProjector}
+            onOpenQR={handleOpenQR}
           />
         )}
       </main>
@@ -149,10 +190,19 @@ export default function App() {
             Giáo viên phụ trách: <strong>Lê Thị Dung</strong> • Trường THPT Đinh Tiên Hoàng
           </p>
           <p className="text-[11px] text-slate-600">
-            Hệ thống hỗ trợ 12 nhóm thảo luận trực tuyến, đồng bộ thời gian thực giữa điện thoại thông minh và máy chiếu lớp học.
+            Hỗ trợ quét mã QR vào nhóm nhanh, đồng bộ thời gian thực giữa điện thoại thông minh và máy chiếu lớp học.
           </p>
         </div>
       </footer>
+
+      {/* QR Code Modal */}
+      {showQRModal && (
+        <QRCodeModal
+          session={session}
+          initialGroupId={qrTargetGroupId}
+          onClose={() => setShowQRModal(false)}
+        />
+      )}
     </div>
   );
 }

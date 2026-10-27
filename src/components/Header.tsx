@@ -10,6 +10,7 @@ import {
   Tv,
   Wifi,
   Sparkles,
+  QrCode,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -17,6 +18,7 @@ interface HeaderProps {
   onViewChange: (view: 'student' | 'teacher' | 'projector') => void;
   isConnected: boolean;
   selectedGroupId: number | null;
+  onOpenQR: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onViewChange,
   isConnected,
   selectedGroupId,
+  onOpenQR,
 }) => {
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
@@ -115,6 +118,17 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Tv className="w-4 h-4" />
             <span>Trình chiếu</span>
+          </button>
+
+          <div className="w-px h-5 bg-slate-300 mx-1" />
+
+          <button
+            onClick={onOpenQR}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold transition-all shadow-2xs"
+            title="Mở mã QR cho học sinh quét vào thảo luận"
+          >
+            <QrCode className="w-4 h-4" />
+            <span>Mã QR</span>
           </button>
         </div>
       </div>

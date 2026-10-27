@@ -21,6 +21,7 @@ import {
   FileSpreadsheet,
   AlertCircle,
   ExternalLink,
+  QrCode,
 } from 'lucide-react';
 import { DiscussionSession, GroupData, TOPICS } from '../types/discussion';
 import { GroupDetailModal } from './GroupDetailModal';
@@ -31,6 +32,7 @@ interface TeacherDashboardProps {
   session: DiscussionSession;
   onRefresh: () => void;
   onOpenProjector: (groupId?: number) => void;
+  onOpenQR: (groupId?: number) => void;
 }
 
 type FilterType =
@@ -46,6 +48,7 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
   session,
   onRefresh,
   onOpenProjector,
+  onOpenQR,
 }) => {
   const [filter, setFilter] = useState<FilterType>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -109,6 +112,15 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
 
           {/* Quick Actions */}
           <div className="flex flex-wrap items-center gap-2.5">
+            <button
+              onClick={() => onOpenQR()}
+              className="inline-flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+              title="Tạo mã QR cho học sinh quét vào thảo luận"
+            >
+              <QrCode className="w-4 h-4" />
+              Mã QR Vào phòng
+            </button>
+
             <button
               onClick={() => onOpenProjector()}
               className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
@@ -280,7 +292,17 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                       {group.id}
                     </span>
                     <div>
-                      <h3 className="font-bold text-slate-900 text-base">{group.name}</h3>
+                      <div className="flex items-center gap-1.5">
+                        <h3 className="font-bold text-slate-900 text-base">{group.name}</h3>
+                        <button
+                          type="button"
+                          onClick={() => onOpenQR(group.id)}
+                          className="p-1 rounded-lg text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
+                          title={`Tạo mã QR cho ${group.name}`}
+                        >
+                          <QrCode className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                       {group.id >= 11 && (
                         <span className="text-[10px] text-indigo-700 font-semibold bg-indigo-50 px-1.5 py-0.2 rounded">
                           Giáo viên cấu hình
