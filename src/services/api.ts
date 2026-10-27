@@ -29,15 +29,38 @@ export async function saveGroupAnswers(
   members: string,
   isDraft: boolean
 ): Promise<{ success: boolean; group: GroupData }> {
-  const res = await fetch(`${API_BASE}/groups/${groupId}/save`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ answers, members, isDraft }),
-  });
-  if (!res.ok) {
-    throw new Error('Lỗi khi lưu bài làm lên máy chủ');
+  const url = `${API_BASE}/groups/${groupId}/save`;
+  const payload = JSON.stringify({ answers, members, isDraft });
+
+  // Try request with 1 automatic retry on network failure
+  let lastError: any = null;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: payload,
+      });
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`Máy chủ phản hồi mã lỗi ${res.status}: ${text.slice(0, 100)}`);
+      }
+
+      return await res.json();
+    } catch (err: any) {
+      lastError = err;
+      if (attempt === 1) {
+        // Wait 300ms before retrying once
+        await new Promise((r) => setTimeout(r, 300));
+      }
+    }
   }
-  return res.json();
+
+  throw lastError || new Error('Không thể kết nối đến máy chủ');
 }
 
 export async function updateGroupTopic(

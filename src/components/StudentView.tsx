@@ -714,11 +714,17 @@ export const StudentView: React.FC<StudentViewProps> = ({
               Chưa thể gửi bài lên máy chủ
             </h3>
 
-            <p className="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
-              Kết nối mạng trên điện thoại bị chập chờn. 
+            <p className="text-xs sm:text-sm text-slate-600 mb-3 leading-relaxed">
+              Kết nối mạng trên điện thoại bị chập chờn hoặc máy chủ đang khởi động lại. 
               <br />
               <strong className="text-emerald-700">Yên tâm: Bài làm đã được tự động lưu an toàn trong máy bạn, không bị mất chữ nào!</strong>
             </p>
+
+            {submitError && (
+              <div className="bg-slate-100 p-2 rounded-xl text-[11px] font-mono text-slate-600 mb-3 text-left border border-slate-200 break-all">
+                Chi tiết: {submitError}
+              </div>
+            )}
 
             <div className="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900 mb-5 text-left font-medium">
               💡 Hãy kiểm tra lại kết nối Wifi/4G rồi bấm nút <strong>"Thử gửi lại ngay"</strong> bên dưới.
