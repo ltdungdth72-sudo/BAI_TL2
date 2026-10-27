@@ -14,6 +14,7 @@ import {
   TOPICS,
   TopicId,
 } from './src/types/discussion.ts';
+import { fetchGroupsFromDb, saveGroupToDb } from './src/db/discussion.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -130,6 +131,12 @@ function saveData(data: DiscussionSession) {
   broadcastUpdate(data);
 }
 
+function syncGroupAsync(group: GroupData) {
+  saveGroupToDb(group).catch((e) => {
+    console.warn('[Cloud SQL] sync error for group', group.id, e);
+  });
+}
+
 // SSE clients management
 type ClientResponse = Response;
 const sseClients: Set<ClientResponse> = new Set();
@@ -165,6 +172,43 @@ async function startServer() {
 
   // Initialize data store
   let sessionData = ensureDataFile();
+
+  // Synchronize with Cloud SQL PostgreSQL
+  try {
+    const dbGroups = await fetchGroupsFromDb();
+    if (dbGroups && dbGroups.length === 12) {
+      sessionData.groups = dbGroups;
+      fs.writeFileSync(DATA_FILE, JSON.stringify(sessionData, null, 2), 'utf-8');
+      console.log('[Cloud SQL] Synchronized 12 groups from Cloud SQL PostgreSQL.');
+    } else {
+      for (const g of sessionData.groups) {
+        await saveGroupToDb(g);
+      }
+      console.log('[Cloud SQL] Initialized 12 groups into Cloud SQL PostgreSQL database.');
+    }
+  } catch (err) {
+    console.warn('[Cloud SQL] Sync notice on startup:', err);
+  }
+
+  // Check database status
+  app.get('/api/db/status', async (_req: Request, res: Response) => {
+    try {
+      const dbGroups = await fetchGroupsFromDb();
+      res.json({
+        connected: Boolean(dbGroups && dbGroups.length > 0),
+        engine: 'Cloud SQL (PostgreSQL)',
+        region: 'asia-southeast1',
+        totalGroups: dbGroups ? dbGroups.length : 0,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (err: any) {
+      res.json({
+        connected: false,
+        engine: 'Cloud SQL (PostgreSQL)',
+        error: String(err?.message || err),
+      });
+    }
+  });
 
   // SSE Stream for real-time updates
   app.get('/api/stream', (req: Request, res: Response) => {
@@ -231,6 +275,7 @@ async function startServer() {
 
     sessionData.groups[groupIndex] = updatedGroup;
     saveData(sessionData);
+    syncGroupAsync(updatedGroup);
 
     res.json({ success: true, group: updatedGroup });
   });
@@ -261,6 +306,7 @@ async function startServer() {
     sessionData.groups[groupIndex].updatedAt = new Date().toISOString();
 
     saveData(sessionData);
+    syncGroupAsync(sessionData.groups[groupIndex]);
     res.json({ success: true, group: sessionData.groups[groupIndex] });
   });
 
@@ -288,6 +334,7 @@ async function startServer() {
     };
 
     saveData(sessionData);
+    syncGroupAsync(sessionData.groups[groupIndex]);
     res.json({ success: true, group: sessionData.groups[groupIndex] });
   });
 
@@ -316,6 +363,7 @@ async function startServer() {
     };
 
     saveData(sessionData);
+    syncGroupAsync(sessionData.groups[groupIndex]);
     res.json({ success: true, group: sessionData.groups[groupIndex] });
   });
 

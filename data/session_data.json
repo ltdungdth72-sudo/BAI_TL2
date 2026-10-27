@@ -6,24 +6,24 @@
   "subjectName": "Tin học 10",
   "targetGrade": "Lớp 10",
   "createdAt": "2026-10-27T13:21:14.533Z",
-  "updatedAt": "2026-10-27T14:10:11.599Z",
+  "updatedAt": "2026-10-27T15:22:00.737Z",
   "groups": [
     {
       "id": 1,
       "name": "Nhóm 1",
       "topicId": "topic_1",
       "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
-      "members": "",
+      "members": "An, Bình, Cường",
       "answers": {
-        "q1": "",
-        "q2": "",
-        "q3": "",
-        "q4": ""
+        "q1": "Hành vi Bình xóa tên An và nhận là của mình vi phạm bản quyền",
+        "q2": "Xâm phạm quyền đứng tên tác giả và quyền bảo vệ sự toàn vẹn của tác phẩm",
+        "q3": "Làm mất quyền nhân thân và uy tín sáng tạo của An",
+        "q4": "Cần xin phép tác giả, dẫn nguồn và ghi rõ tên An khi chia sẻ"
       },
-      "status": "chua_lam",
+      "status": "da_gui",
       "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T14:09:50.406Z",
-      "submittedAt": null,
+      "updatedAt": "2026-10-27T15:22:00.737Z",
+      "submittedAt": "2026-10-27T15:22:00.737Z",
       "feedback": {
         "generalComment": "",
         "strengths": "",
