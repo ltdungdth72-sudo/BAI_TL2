@@ -32,10 +32,13 @@ export async function saveGroupAnswers(
   const url = `${API_BASE}/groups/${groupId}/save`;
   const payload = JSON.stringify({ answers, members, isDraft });
 
-  // Try request with 1 automatic retry on network failure
+  // Robust submission with 3 attempts and 12s timeout
   let lastError: any = null;
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
     try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 12000);
+
       const res = await fetch(url, {
         method: 'POST',
         headers: {
@@ -43,19 +46,22 @@ export async function saveGroupAnswers(
           'Accept': 'application/json',
         },
         body: payload,
+        signal: controller.signal,
       });
+
+      clearTimeout(timer);
 
       if (!res.ok) {
         const text = await res.text().catch(() => '');
-        throw new Error(`Máy chủ phản hồi mã lỗi ${res.status}: ${text.slice(0, 100)}`);
+        throw new Error(`Máy chủ phản hồi mã ${res.status}: ${text.slice(0, 100)}`);
       }
 
       return await res.json();
     } catch (err: any) {
       lastError = err;
-      if (attempt === 1) {
-        // Wait 300ms before retrying once
-        await new Promise((r) => setTimeout(r, 300));
+      if (attempt < 3) {
+        // Wait before retrying (400ms, 800ms)
+        await new Promise((r) => setTimeout(r, attempt * 400));
       }
     }
   }

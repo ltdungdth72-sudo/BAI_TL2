@@ -742,8 +742,20 @@ export const StudentView: React.FC<StudentViewProps> = ({
 
               <button
                 type="button"
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.location.reload();
+                  }
+                }}
+                className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs sm:text-sm transition-all"
+              >
+                ⚡ Tải lại trang (Bài làm đã lưu an toàn trên máy)
+              </button>
+
+              <button
+                type="button"
                 onClick={() => setSubmitError(null)}
-                className="w-full py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold text-xs sm:text-sm transition-all"
+                className="w-full py-2 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-medium text-xs transition-all"
               >
                 Đóng để tiếp tục chỉnh sửa
               </button>

@@ -6,24 +6,24 @@
   "subjectName": "Tin học 10",
   "targetGrade": "Lớp 10",
   "createdAt": "2026-10-27T13:21:14.533Z",
-  "updatedAt": "2026-10-27T15:22:00.737Z",
+  "updatedAt": "2026-10-27T16:08:51.106Z",
   "groups": [
     {
       "id": 1,
       "name": "Nhóm 1",
       "topicId": "topic_1",
       "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
-      "members": "An, Bình, Cường",
+      "members": "",
       "answers": {
-        "q1": "Hành vi Bình xóa tên An và nhận là của mình vi phạm bản quyền",
-        "q2": "Xâm phạm quyền đứng tên tác giả và quyền bảo vệ sự toàn vẹn của tác phẩm",
-        "q3": "Làm mất quyền nhân thân và uy tín sáng tạo của An",
-        "q4": "Cần xin phép tác giả, dẫn nguồn và ghi rõ tên An khi chia sẻ"
+        "q1": "",
+        "q2": "",
+        "q3": "",
+        "q4": ""
       },
-      "status": "da_gui",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T15:22:00.737Z",
-      "submittedAt": "2026-10-27T15:22:00.737Z",
+      "status": "chua_lam",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
+      "submittedAt": null,
       "feedback": {
         "generalComment": "",
         "strengths": "",
@@ -38,17 +38,17 @@
       "name": "Nhóm 2",
       "topicId": "topic_1",
       "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
-      "members": "",
+      "members": "Thử nghiệm điện thoại",
       "answers": {
-        "q1": "",
-        "q2": "",
-        "q3": "",
-        "q4": ""
+        "q1": "Hành vi xóa tên An",
+        "q2": "Xâm phạm quyền tác giả",
+        "q3": "Ảnh hưởng danh dự của tác giả",
+        "q4": "Cần xin phép trước khi đăng"
       },
-      "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
-      "submittedAt": null,
+      "status": "da_gui",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T16:08:51.106Z",
+      "submittedAt": "2026-10-27T16:08:51.106Z",
       "feedback": {
         "generalComment": "",
         "strengths": "",
@@ -71,8 +71,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -88,17 +88,17 @@
       "name": "Nhóm 4",
       "topicId": "topic_1",
       "scenario": "Sau khi An hoàn thành áp phích cho cuộc thi, An đã đăng tác phẩm của mình lên trang cá nhân. Bình rất thích áp phích này nên tải về và xóa tên An ở góc ảnh rồi đăng lên trang cá nhân, giới thiệu rằng chính mình là người thiết kế.",
-      "members": "",
+      "members": "Bình",
       "answers": {
-        "q1": "",
-        "q2": "",
-        "q3": "",
-        "q4": ""
+        "q1": "câu 1",
+        "q2": "câu 2",
+        "q3": "câu 3",
+        "q4": "câu 4"
       },
-      "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T14:03:43.083Z",
-      "submittedAt": null,
+      "status": "da_gui",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T15:56:27.319Z",
+      "submittedAt": "2026-10-27T15:56:27.319Z",
       "feedback": {
         "generalComment": "",
         "strengths": "",
@@ -121,8 +121,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -146,8 +146,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -171,8 +171,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -196,8 +196,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -221,8 +221,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -246,8 +246,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -271,8 +271,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
@@ -296,8 +296,8 @@
         "q4": ""
       },
       "status": "chua_lam",
-      "createdAt": "2026-10-27T13:21:14.534Z",
-      "updatedAt": "2026-10-27T13:21:14.534Z",
+      "createdAt": "2026-10-27T14:56:06.687Z",
+      "updatedAt": "2026-10-27T14:56:06.687Z",
       "submittedAt": null,
       "feedback": {
         "generalComment": "",
